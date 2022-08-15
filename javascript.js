@@ -27,7 +27,7 @@ const equal = document.querySelector('#equal');
 
 numbs.forEach((numb) => {
     numb.addEventListener('click', (e) => {
-        console.log(e.target.innerText);
+        screen.innerText += e.target.innerText;
     });
 });
 
