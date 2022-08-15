@@ -24,13 +24,23 @@ function operate(a, b, math) {
 const screen = document.querySelector('#screen');
 const numbs = document.querySelectorAll('#num');
 const equal = document.querySelector('#equal');
+let displayValue = '';
 
 numbs.forEach((numb) => {
     numb.addEventListener('click', (e) => {
         screen.innerText += e.target.innerText;
+        return tempNumber();
     });
 });
 
 equal.addEventListener('click', (e) => {
     console.log(e.target.innerText);
 });
+
+// let tempNumber = function() {
+//     return screen.innerText;
+// };
+
+function tempNumber() {
+    return displayValue = screen.innerText;
+};
