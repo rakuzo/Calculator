@@ -1,0 +1,42 @@
+#calculator {
+    border: 1px solid black;
+    width: 400px;
+    padding: 10px;
+}
+
+#screen {
+    border : 1px solid black;
+    padding: 5px;
+    margin-bottom: 10px;
+    height: 65px;
+}
+
+#buttonplace {
+    display: flex;
+    justify-content: space-around;
+}
+
+#numbers,
+#operator {
+    padding: 0px;
+    margin: 0px;
+}
+
+#numbers {
+    flex: 3 1 auto;
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+}
+
+#operator {
+    flex: 1 1 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+button {
+    flex: 1 0 auto;
+    height: 90px;
+    width: 85px;
+}
