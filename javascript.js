@@ -1,4 +1,5 @@
 function add(a, b) {
+    screen.innerText = a + b;
     return a + b;
 }
 
@@ -26,7 +27,7 @@ const numbs = document.querySelectorAll('#num');
 const plus = document.querySelector('#add');
 const equal = document.querySelector('#equal');
 let displayValue = '';
-const tempMemory = {
+const temp = {
     firstNum: 0,
     operator: '',
     secondNum: 0
@@ -39,14 +40,15 @@ numbs.forEach((numb) => {
     });
 });
 
-equal.addEventListener('click', (e) => {
-    // console.log(e.target.innerText);
-    screen.innerText += e.target.innerText;
+equal.addEventListener('click', () => {
+    temp['secondNum'] = parseInt(displayValue);
+    return operate(temp.firstNum, temp.operator, temp.secondNum);
 });
 
 plus.addEventListener('click', (e) => {
-    // console.log(e.target.id);
-    screen.innerText += e.target.innerText;
+    temp['firstNum'] = parseInt(displayValue);
+    temp['operator'] = e.target.id;
+    screen.innerText = '';
 });
 
 function getNumScreen() {
