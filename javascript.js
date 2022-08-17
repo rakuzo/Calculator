@@ -1,5 +1,7 @@
 function add(a, b) {
     screen.innerText = a + b;
+    result = a + b;
+    console.log(result);
     resetTemp();
     return a + b;
 }
@@ -29,10 +31,11 @@ const plus = document.querySelector('#add');
 const equal = document.querySelector('#equal');
 let displayValue = '';
 const temp = {
-    firstNum: undefined,
-    operator: undefined,
-    secondNum: undefined
+    firstNum: null,
+    operator: null,
+    secondNum: null
 };
+let result = null;
 
 numbs.forEach((numb) => {
     numb.addEventListener('click', (e) => {
@@ -42,29 +45,45 @@ numbs.forEach((numb) => {
 });
 
 equal.addEventListener('click', () => {
-    temp['secondNum'] = parseInt(displayValue);
-    return operate(temp.firstNum, temp.operator, temp.secondNum);
+    if (result !== null && temp.operator === 'add') {
+        console.log('first equal statement works');
+        contMath();
+    } else {
+        console.log('second equal statement works');
+        startMath(e.target.id);
+    }
 });
 
 plus.addEventListener('click', (e) => {
-    getNumScreen();
     console.log(displayValue);
-    if (temp.firstNum !== undefined && temp.operator !== undefined) {
-        temp['secondNum'] = parseInt(displayValue);
-        return operate(temp.firstNum, temp.operator, temp.secondNum);
+    if (result !== null && temp.operator === 'add') {
+        console.log('first statement works');
+        contMath();
     } else {
-        temp['firstNum'] = parseInt(displayValue);
-        temp['operator'] = e.target.id;
-        screen.innerText = '';
+        console.log('second statement works');
+        startMath(e.target.id);
     }
+    screen.innerText = '';
 });
 
 function getNumScreen() {
     return displayValue = screen.innerText;
 };
 
+function contMath() {
+    temp['secondNum'] = parseInt(displayValue);
+    operate(result, temp.operator, temp.secondNum);
+}
+
+function startMath(opr) {
+    getNumScreen();
+    temp['firstNum'] = parseInt(displayValue);
+    temp['operator'] = opr;
+    operate(temp.firstNum, temp.operator, temp.secondNum);
+}
+
 function resetTemp() {
-    temp.firstNum = undefined;
-    temp.operator = undefined;
-    temp.secondNum = undefined;
+    temp.firstNum = null;
+    // temp.operator = undefined;
+    temp.secondNum = null;
 }
