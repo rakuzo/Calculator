@@ -36,10 +36,9 @@ function operate(a, b, math) {
 const screen = document.querySelector('#screen');
 const subscreen = document.querySelector('#subscreen');
 const numbs = document.querySelectorAll('#num');
-const operts = document.querySelectorAll('#operate')
+const operts = document.querySelectorAll('#operate');
+const clear = document.querySelector('#clear');
 const equal = document.querySelector('#equal');
-const plus = document.querySelector('#add');
-const minus = document.querySelector('#subtract');
 let displayValue = '';
 const temp = {
     firstNum : null,
@@ -55,7 +54,7 @@ numbs.forEach((numb) => {
     });
 });
 
-equal.addEventListener('click', (e) => {
+equal.addEventListener('click', () => {
     getNumber();
     decide();
 });
@@ -69,6 +68,13 @@ operts.forEach((opert) => {
     temp['operator'] = e.target.innerText;
     subscreen.innerText += e.target.innerText;
     });
+});
+
+clear.addEventListener('click', () => {
+    resetTemp();
+    temp.result = null;
+    screen.innerText = '';
+    subscreen.innerHTML = '';
 });
 
 function decide() {
