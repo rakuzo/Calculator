@@ -13,23 +13,30 @@ function subtract(a, b) {
 }
 
 function multiply(a, b) {
-    return a * b;
+    temp['result'] = a * b;
+    screen.innerText = temp.result;
+    console.log(temp);
+    return resetTemp();
 }
 
 function divide(a, b) {
-    return a / b;
+    temp['result'] = a / b;
+    screen.innerText = temp.result;
+    console.log(temp);
+    return resetTemp();
 }
 
 function operate(a, b, math) {
-    if (math === 'add') return add(a, b);
-    if (math === 'subtract') return subtract(a, b);
-    if (math === 'multiply') return multiply(a, b);
-    if (math === 'divide') return divide(a, b);
+    if (math === '+') return add(a, b);
+    if (math === '-') return subtract(a, b);
+    if (math === 'x') return multiply(a, b);
+    if (math === '/') return divide(a, b);
 }
 
 const screen = document.querySelector('#screen');
 const subscreen = document.querySelector('#subscreen');
 const numbs = document.querySelectorAll('#num');
+const operts = document.querySelectorAll('#operate')
 const equal = document.querySelector('#equal');
 const plus = document.querySelector('#add');
 const minus = document.querySelector('#subtract');
@@ -53,36 +60,38 @@ equal.addEventListener('click', (e) => {
     decide();
 });
 
-plus.addEventListener('click', (e) =>{
+operts.forEach((opert) => {
+    opert.addEventListener('click', (e) =>{
     getNumber();
     console.log(temp);
     screen.innerText = '';
     decide();
-    temp['operator'] = e.target.id;
+    temp['operator'] = e.target.innerText;
     subscreen.innerText += e.target.innerText;
-});
-
-minus.addEventListener('click', (e) => {
-    getNumber();
-    console.log(temp);
-    screen.innerText = '';
-    decide();
-    temp['operator'] = e.target.id;
-    subscreen.innerText += e.target.innerText;
+    });
 });
 
 function decide() {
     if (temp.firstNum !== null && 
         temp.secondNum !== null && 
         temp.operator !== null) 
-        {operate (temp.firstNum, temp.secondNum, temp.operator);}
+        {
+        console.log('first decide condition works');
+        operate (temp.firstNum, temp.secondNum, temp.operator);
+    } else if (temp.firstNum === null && 
+        temp.secondNum === null && 
+        temp.operator !== null) 
+        {
+        console.log('second decide condition works');
+        operate (temp.result, temp.secondNum, temp.operator);
+    }
 }
 
 function getNumber() {
     if (temp.firstNum !== null && temp.operator !== null) {
         temp['secondNum'] = parseFloat(screen.innerText);
     } else {
-    temp['firstNum'] = parseFloat(screen.innerText);
+        temp['firstNum'] = parseFloat(screen.innerText);
     }
 }
 
