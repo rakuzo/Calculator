@@ -1,12 +1,14 @@
 function add(a, b) {
     temp['result'] = a + b;
     screen.innerText = temp.result;
+    console.log(temp);
     return resetTemp();
 }
 
 function subtract(a, b) {
     temp['result'] = a - b;
     screen.innerText = temp.result;
+    console.log(temp);
     return resetTemp();
 }
 
@@ -26,6 +28,7 @@ function operate(a, b, math) {
 }
 
 const screen = document.querySelector('#screen');
+const subscreen = document.querySelector('#subscreen');
 const numbs = document.querySelectorAll('#num');
 const equal = document.querySelector('#equal');
 const plus = document.querySelector('#add');
@@ -41,26 +44,31 @@ const temp = {
 numbs.forEach((numb) => {
     numb.addEventListener('click', (e) => {
         screen.innerText += e.target.innerText;
+        subscreen.innerText += e.target.innerText;
     });
 });
 
-equal.addEventListener('click', () => {
+equal.addEventListener('click', (e) => {
     getNumber();
     decide();
 });
 
 plus.addEventListener('click', (e) =>{
     getNumber();
+    console.log(temp);
     screen.innerText = '';
     decide();
     temp['operator'] = e.target.id;
+    subscreen.innerText += e.target.innerText;
 });
 
 minus.addEventListener('click', (e) => {
     getNumber();
+    console.log(temp);
     screen.innerText = '';
     decide();
     temp['operator'] = e.target.id;
+    subscreen.innerText += e.target.innerText;
 });
 
 function decide() {
