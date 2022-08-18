@@ -1,9 +1,13 @@
 function add(a, b) {
-    return a + b;
+    temp['result'] = a + b;
+    screen.innerText = temp.result;
+    return resetTemp();
 }
 
 function subtract(a, b) {
-    return a - b;
+    temp['result'] = a - b;
+    screen.innerText = temp.result;
+    return resetTemp();
 }
 
 function multiply(a, b) {
@@ -24,23 +28,58 @@ function operate(a, b, math) {
 const screen = document.querySelector('#screen');
 const numbs = document.querySelectorAll('#num');
 const equal = document.querySelector('#equal');
+const plus = document.querySelector('#add');
+const minus = document.querySelector('#subtract');
 let displayValue = '';
+const temp = {
+    firstNum : null,
+    secondNum : null,
+    operator : null,
+    result : null
+};
 
 numbs.forEach((numb) => {
     numb.addEventListener('click', (e) => {
         screen.innerText += e.target.innerText;
-        return tempNumber();
     });
 });
 
-equal.addEventListener('click', (e) => {
-    console.log(e.target.innerText);
+equal.addEventListener('click', () => {
+    getNumber();
+    decide();
 });
 
-// let tempNumber = function() {
-//     return screen.innerText;
-// };
+plus.addEventListener('click', (e) =>{
+    getNumber();
+    screen.innerText = '';
+    decide();
+    temp['operator'] = e.target.id;
+});
 
-function tempNumber() {
-    return displayValue = screen.innerText;
-};
+minus.addEventListener('click', (e) => {
+    getNumber();
+    screen.innerText = '';
+    decide();
+    temp['operator'] = e.target.id;
+});
+
+function decide() {
+    if (temp.firstNum !== null && 
+        temp.secondNum !== null && 
+        temp.operator !== null) 
+        {operate (temp.firstNum, temp.secondNum, temp.operator);}
+}
+
+function getNumber() {
+    if (temp.firstNum !== null && temp.operator !== null) {
+        temp['secondNum'] = parseFloat(screen.innerText);
+    } else {
+    temp['firstNum'] = parseFloat(screen.innerText);
+    }
+}
+
+function resetTemp() {
+    temp.firstNum = null;
+    temp.secondNum = null;
+    temp.operator = null;
+}
