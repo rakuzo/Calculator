@@ -17,12 +17,24 @@ body {
     height: fit-content;
 }
 
-#screen {
+#upperframe {
     border : 1px solid black;
     padding: 5px;
     margin-bottom: 10px;
     height: 65px;
-    font-size: 45px;
+}
+
+#screen {
+    font-size: 40px;
+    height: 45px;
+    text-align: right;
+    padding: 0px;
+    margin: 0px;
+}
+
+#subscreen {
+    font-size: 15px;
+    text-align: right;
 }
 
 #buttonplace {

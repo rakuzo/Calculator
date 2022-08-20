@@ -1,89 +1,114 @@
 function add(a, b) {
-    screen.innerText = a + b;
-    result = a + b;
-    console.log(result);
-    resetTemp();
-    return a + b;
+    temp['result'] = a + b;
+    screen.innerText = temp.result;
+    subscreen.innerText = `${temp.result}`;
+    console.log(temp);
+    return resetTemp();
 }
 
 function subtract(a, b) {
-    return a - b;
+    temp['result'] = a - b;
+    screen.innerText = temp.result;
+    subscreen.innerText = `${temp.result}`;
+    console.log(temp);
+    return resetTemp();
 }
 
 function multiply(a, b) {
-    return a * b;
+    temp['result'] = a * b;
+    screen.innerText = temp.result;
+    subscreen.innerText = `${temp.result}`;
+    console.log(temp);
+    return resetTemp();
 }
 
 function divide(a, b) {
-    return a / b;
+    temp['result'] = a / b;
+    screen.innerText = temp.result;
+    subscreen.innerText = `${temp.result}`;
+    console.log(temp);
+    return resetTemp();
 }
 
-function operate(a, math, b) {
-    if (math === 'add') return add(a, b);
-    if (math === 'subtract') return subtract(a, b);
-    if (math === 'multiply') return multiply(a, b);
-    if (math === 'divide') return divide(a, b);
+function operate(a, b, math) {
+    if (math === '+') return add(a, b);
+    if (math === '-') return subtract(a, b);
+    if (math === 'x') return multiply(a, b);
+    if (math === '/') return divide(a, b);
 }
 
 const screen = document.querySelector('#screen');
+const subscreen = document.querySelector('#subscreen');
 const numbs = document.querySelectorAll('#num');
-const plus = document.querySelector('#add');
+const operts = document.querySelectorAll('#operate');
+const clear = document.querySelector('#clear');
 const equal = document.querySelector('#equal');
 let displayValue = '';
 const temp = {
-    firstNum: null,
-    operator: null,
-    secondNum: null
+    firstNum : null,
+    secondNum : null,
+    operator : null,
+    result : null
 };
-let result = null;
 
 numbs.forEach((numb) => {
     numb.addEventListener('click', (e) => {
+        if (temp.firstNum !== null &&
+            temp.firstNum === temp.result &&
+            temp.secondNum === null) {
+            screen.innerText = '';
+            //fill first number to break the condition
+            temp['secondNum'] = parseFloat(screen.innerText); 
+        };
         screen.innerText += e.target.innerText;
-        return getNumScreen();
+        subscreen.innerText += e.target.innerText;
+    });
+});
+
+operts.forEach((opert) => {
+    opert.addEventListener('click', (e) =>{
+    getNumber(); //get first number for the first math operation
+    console.log(temp);
+    screen.innerText = '';
+    decide();
+    temp['operator'] = e.target.innerText;
+    getNumber(); //get second number
+    subscreen.innerText += e.target.innerText;
     });
 });
 
 equal.addEventListener('click', () => {
-    if (result !== null && temp.operator === 'add') {
-        console.log('first equal statement works');
-        contMath();
-    } else {
-        console.log('second equal statement works');
-        startMath(e.target.id);
-    }
+    getNumber();
+    decide();
 });
 
-plus.addEventListener('click', (e) => {
-    console.log(displayValue);
-    if (result !== null && temp.operator === 'add') {
-        console.log('first statement works');
-        contMath();
-    } else {
-        console.log('second statement works');
-        startMath(e.target.id);
-    }
+clear.addEventListener('click', () => {
+    resetTemp();
+    temp.result = null;
     screen.innerText = '';
+    subscreen.innerHTML = '';
 });
 
-function getNumScreen() {
-    return displayValue = screen.innerText;
-};
-
-function contMath() {
-    temp['secondNum'] = parseInt(displayValue);
-    operate(result, temp.operator, temp.secondNum);
+function decide() {
+    if (isNaN(temp.firstNum) || isNaN(temp.secondNum)) return;
+    if (temp.firstNum !== null && 
+        temp.secondNum !== null && 
+        temp.operator !== null) 
+        {
+        operate (temp.firstNum, temp.secondNum, temp.operator);
+    }
 }
 
-function startMath(opr) {
-    getNumScreen();
-    temp['firstNum'] = parseInt(displayValue);
-    temp['operator'] = opr;
-    operate(temp.firstNum, temp.operator, temp.secondNum);
+function getNumber() {
+    if (temp.firstNum !== null && temp.operator !== null) {
+        temp['secondNum'] = parseFloat(screen.innerText);
+    } else {
+        temp['firstNum'] = parseFloat(screen.innerText);
+    }
 }
 
 function resetTemp() {
     temp.firstNum = null;
-    // temp.operator = undefined;
     temp.secondNum = null;
+    temp.operator = null;
 }
