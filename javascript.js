@@ -57,7 +57,6 @@ const temp = {
     firstNum : null,
     secondNum : null,
     operator : null,
-    result : null
 };
 
 function updateScreen() {
@@ -86,5 +85,10 @@ equal.addEventListener('click', () => {
 });
 
 clear.addEventListener('click', () => {
-
+    displayValue = '';
+    historyValue = '';
+    temp.firstNum = null;
+    temp.secondNum = null;
+    temp.operator = null;
+    updateScreen();
 });
