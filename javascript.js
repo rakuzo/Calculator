@@ -1,36 +1,45 @@
 function add(a, b) {
     temp['result'] = a + b;
     screen.innerText = temp.result;
-    console.log(temp);
-    return resetTemp();
 }
 
 function subtract(a, b) {
     temp['result'] = a - b;
     screen.innerText = temp.result;
-    console.log(temp);
-    return resetTemp();
 }
 
 function multiply(a, b) {
     temp['result'] = a * b;
     screen.innerText = temp.result;
-    console.log(temp);
-    return resetTemp();
 }
 
 function divide(a, b) {
     temp['result'] = a / b;
     screen.innerText = temp.result;
-    console.log(temp);
-    return resetTemp();
 }
+
+function resetTemp() {
+    displayValue = '';
+    historyValue = '';
+    temp.firstNum = null;
+    temp.secondNum = null;
+    temp.operator = null;
+    temp.result = null
+ }
 
 function operate(a, b, math) {
     if (math === '+') return add(a, b);
     if (math === '-') return subtract(a, b);
     if (math === 'x') return multiply(a, b);
     if (math === '/') return divide(a, b);
+}
+
+function decide(operation) {
+    if (displayValue === '') return;
+    temp['operator'] = operation;
+    temp['firstNum'] = displayValue;
+    historyValue = temp['firstNum'];
+    displayValue = '';
 }
 
 const screen = document.querySelector('#screen');
@@ -40,6 +49,7 @@ const operts = document.querySelectorAll('#operate');
 const clear = document.querySelector('#clear');
 const equal = document.querySelector('#equal');
 let displayValue = '';
+let historyValue = '';
 const temp = {
     firstNum : null,
     secondNum : null,
@@ -47,62 +57,30 @@ const temp = {
     result : null
 };
 
+function updateScreen() {
+    screen.innerText = displayValue;
+    subscreen.innerText = historyValue;
+}
+
 numbs.forEach((numb) => {
     numb.addEventListener('click', (e) => {
-        screen.innerText += e.target.innerText;
-        subscreen.innerText += e.target.innerText;
+       displayValue += e.target.innerText;
+       updateScreen();
+    });
+});
+
+operts.forEach((opert) => {
+    opert.addEventListener('click', (e) => {
+        decide(opert.innerText);
+        historyValue += e.target.innerText;
+        updateScreen();
     });
 });
 
 equal.addEventListener('click', () => {
-    getNumber();
-    decide();
-});
 
-operts.forEach((opert) => {
-    opert.addEventListener('click', (e) =>{
-    getNumber();
-    console.log(temp);
-    screen.innerText = '';
-    decide();
-    temp['operator'] = e.target.innerText;
-    subscreen.innerText += e.target.innerText;
-    });
 });
 
 clear.addEventListener('click', () => {
-    resetTemp();
-    temp.result = null;
-    screen.innerText = '';
-    subscreen.innerHTML = '';
+
 });
-
-function decide() {
-    if (temp.firstNum !== null && 
-        temp.secondNum !== null && 
-        temp.operator !== null) 
-        {
-        console.log('first decide condition works');
-        operate (temp.firstNum, temp.secondNum, temp.operator);
-    } else if (temp.firstNum === null && 
-        temp.secondNum === null && 
-        temp.operator !== null) 
-        {
-        console.log('second decide condition works');
-        operate (temp.result, temp.secondNum, temp.operator);
-    }
-}
-
-function getNumber() {
-    if (temp.firstNum !== null && temp.operator !== null) {
-        temp['secondNum'] = parseFloat(screen.innerText);
-    } else {
-        temp['firstNum'] = parseFloat(screen.innerText);
-    }
-}
-
-function resetTemp() {
-    temp.firstNum = null;
-    temp.secondNum = null;
-    temp.operator = null;
-}
