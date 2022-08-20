@@ -1,6 +1,7 @@
 function add(a, b) {
     temp['result'] = a + b;
     screen.innerText = temp.result;
+    subscreen.innerText = `${temp.result}`;
     console.log(temp);
     return resetTemp();
 }
@@ -8,6 +9,7 @@ function add(a, b) {
 function subtract(a, b) {
     temp['result'] = a - b;
     screen.innerText = temp.result;
+    subscreen.innerText = `${temp.result}`;
     console.log(temp);
     return resetTemp();
 }
@@ -15,6 +17,7 @@ function subtract(a, b) {
 function multiply(a, b) {
     temp['result'] = a * b;
     screen.innerText = temp.result;
+    subscreen.innerText = `${temp.result}`;
     console.log(temp);
     return resetTemp();
 }
@@ -22,6 +25,7 @@ function multiply(a, b) {
 function divide(a, b) {
     temp['result'] = a / b;
     screen.innerText = temp.result;
+    subscreen.innerText = `${temp.result}`;
     console.log(temp);
     return resetTemp();
 }
@@ -49,6 +53,9 @@ const temp = {
 
 numbs.forEach((numb) => {
     numb.addEventListener('click', (e) => {
+        if (temp.firstNum !== null && temp.firstNum == temp.result) {
+            screen.innerText = '';
+        };
         screen.innerText += e.target.innerText;
         subscreen.innerText += e.target.innerText;
     });
@@ -56,12 +63,12 @@ numbs.forEach((numb) => {
 
 operts.forEach((opert) => {
     opert.addEventListener('click', (e) =>{
-    getNumber();
+    getNumber(); //get first number
     console.log(temp);
     screen.innerText = '';
     decide();
     temp['operator'] = e.target.innerText;
-    getNumber();
+    getNumber(); //get second number
     subscreen.innerText += e.target.innerText;
     });
 });
