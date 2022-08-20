@@ -36,6 +36,9 @@ function operate(a, b, math) {
 
 function decide(operation) {
     if (displayValue === '') return;
+    if (temp['firstNum'] !== null) {
+        operate();
+    }
     temp['operator'] = operation;
     temp['firstNum'] = displayValue;
     historyValue = temp['firstNum'];
@@ -78,7 +81,8 @@ operts.forEach((opert) => {
 });
 
 equal.addEventListener('click', () => {
-
+    operate();
+    updateScreen();
 });
 
 clear.addEventListener('click', () => {
