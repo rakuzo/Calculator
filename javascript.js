@@ -57,7 +57,8 @@ numbs.forEach((numb) => {
             temp.firstNum === temp.result &&
             temp.secondNum === null) {
             screen.innerText = '';
-            temp['secondNum'] = parseFloat(screen.innerText); //fill first number to break the condition
+            //fill first number to break the condition
+            temp['secondNum'] = parseFloat(screen.innerText); 
         };
         screen.innerText += e.target.innerText;
         subscreen.innerText += e.target.innerText;
@@ -66,7 +67,7 @@ numbs.forEach((numb) => {
 
 operts.forEach((opert) => {
     opert.addEventListener('click', (e) =>{
-    getNumber(); //get first number
+    getNumber(); //get first number for the first math operation
     console.log(temp);
     screen.innerText = '';
     decide();
