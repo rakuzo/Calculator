@@ -54,11 +54,6 @@ numbs.forEach((numb) => {
     });
 });
 
-equal.addEventListener('click', () => {
-    getNumber();
-    decide();
-});
-
 operts.forEach((opert) => {
     opert.addEventListener('click', (e) =>{
     getNumber();
@@ -66,8 +61,14 @@ operts.forEach((opert) => {
     screen.innerText = '';
     decide();
     temp['operator'] = e.target.innerText;
+    getNumber();
     subscreen.innerText += e.target.innerText;
     });
+});
+
+equal.addEventListener('click', () => {
+    getNumber();
+    decide();
 });
 
 clear.addEventListener('click', () => {
