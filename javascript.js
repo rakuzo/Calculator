@@ -53,8 +53,11 @@ const temp = {
 
 numbs.forEach((numb) => {
     numb.addEventListener('click', (e) => {
-        if (temp.firstNum !== null && temp.firstNum == temp.result) {
+        if (temp.firstNum !== null &&
+            temp.firstNum === temp.result &&
+            temp.secondNum === null) {
             screen.innerText = '';
+            temp['secondNum'] = parseFloat(screen.innerText); //fill first number to break the condition
         };
         screen.innerText += e.target.innerText;
         subscreen.innerText += e.target.innerText;
@@ -86,18 +89,12 @@ clear.addEventListener('click', () => {
 });
 
 function decide() {
+    if (isNaN(temp.firstNum) || isNaN(temp.secondNum)) return;
     if (temp.firstNum !== null && 
         temp.secondNum !== null && 
         temp.operator !== null) 
         {
-        console.log('first decide condition works');
         operate (temp.firstNum, temp.secondNum, temp.operator);
-    } else if (temp.firstNum === null && 
-        temp.secondNum === null && 
-        temp.operator !== null) 
-        {
-        console.log('second decide condition works');
-        operate (temp.result, temp.secondNum, temp.operator);
     }
 }
 
