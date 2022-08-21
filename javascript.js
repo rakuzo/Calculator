@@ -28,6 +28,7 @@ function divide(a, b) {
 
 function operate(a, b, math) {
     if (b === 0 && math === '/') {
+        subscreen.innerText = 'Press Any Number or [AC] to Reset Calculator'
         return screen.innerText = 'Error';
     }
     if (math === '+') return add(a, b);
