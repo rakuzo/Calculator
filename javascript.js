@@ -42,6 +42,7 @@ const subscreen = document.querySelector('#subscreen');
 const numbs = document.querySelectorAll('#num');
 const operts = document.querySelectorAll('#operate');
 const clear = document.querySelector('#clear');
+const backSpace = document.querySelector('#backspace');
 const equal = document.querySelector('#equal');
 let displayValue = '';
 const temp = {
@@ -88,6 +89,13 @@ clear.addEventListener('click', () => {
     temp.result = null;
     screen.innerText = '';
     subscreen.innerHTML = '';
+});
+
+backSpace.addEventListener('click', () => {
+    displayValue = screen.innerText;
+    const deleteOne = displayValue.slice(0, -1);
+    screen.innerText = deleteOne;
+    subscreen.innerText = deleteOne;
 });
 
 function decide() {
