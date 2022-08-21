@@ -76,7 +76,11 @@ operts.forEach((opert) => {
     decide();
     temp['operator'] = e.target.innerText;
     getNumber(); //get second number
-    subscreen.innerText += e.target.innerText;
+    if (isNaN(temp.firstNum)) {
+        return //stop printing operator if there's no number
+    } else {
+        subscreen.innerText += e.target.innerText;
+    }
     });
 });
 
