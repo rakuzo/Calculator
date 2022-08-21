@@ -2,7 +2,6 @@ function add(a, b) {
     temp['result'] = Math.round(((a + b) + Number.EPSILON) * 100) / 100;
     screen.innerText = temp.result;
     subscreen.innerText = `${temp.result}`;
-    console.log(temp);
     return resetTemp();
 }
 
@@ -10,7 +9,6 @@ function subtract(a, b) {
     temp['result'] = Math.round(((a - b) + Number.EPSILON) * 100) / 100;
     screen.innerText = temp.result;
     subscreen.innerText = `${temp.result}`;
-    console.log(temp);
     return resetTemp();
 }
 
@@ -18,7 +16,6 @@ function multiply(a, b) {
     temp['result'] = Math.round(((a * b) + Number.EPSILON) * 100) / 100;
     screen.innerText = temp.result;
     subscreen.innerText = `${temp.result}`;
-    console.log(temp);
     return resetTemp();
 }
 
@@ -26,7 +23,6 @@ function divide(a, b) {
     temp['result'] = Math.round(((a / b) + Number.EPSILON) * 100) / 100;
     screen.innerText = temp.result;
     subscreen.innerText = `${temp.result}`;
-    console.log(temp);
     return resetTemp();
 }
 
@@ -80,7 +76,6 @@ numbs.forEach((numb) => {
 operts.forEach((opert) => {
     opert.addEventListener('click', (e) =>{
     getNumber(); //get first number for the first math operation
-    console.log(temp);
     screen.innerText = '';
     decide();
     temp['operator'] = e.target.innerText;
