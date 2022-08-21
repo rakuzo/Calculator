@@ -11,14 +11,15 @@ body {
 }
 
 #calculator {
-    border: 1px solid black;
+    border: 3px solid black;
+    border-radius: 10px;
     width: 400px;
     padding: 10px;
     height: fit-content;
 }
 
 #upperframe {
-    border : 1px solid black;
+    border : 2px solid black;
     padding: 5px;
     margin-bottom: 10px;
     height: 65px;
@@ -70,4 +71,27 @@ button {
     flex: 1 0 auto;
     height: 90px;
     width: 85px;
+    font-weight: bold;
+    font-size: large;
+}
+
+/* Buttons customization */
+#operate {
+    background-color: aquamarine;
+}
+
+#equal {
+    background-color: orange;
+}
+
+#clear {
+    background-color: red;
+}
+
+#backspace {
+    background-color: darkslategrey;
+}
+
+#num {
+    background-color: gray;
 }
