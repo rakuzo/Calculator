@@ -45,6 +45,7 @@ const clear = document.querySelector('#clear');
 const backSpace = document.querySelector('#backspace');
 const equal = document.querySelector('#equal');
 let displayValue = '';
+let historyValue = '';
 const temp = {
     firstNum : null,
     secondNum : null,
@@ -95,7 +96,9 @@ backSpace.addEventListener('click', () => {
     displayValue = screen.innerText;
     const deleteOne = displayValue.slice(0, -1);
     screen.innerText = deleteOne;
-    subscreen.innerText = deleteOne;
+    historyValue = subscreen.innerText;
+    const deleteSubs = historyValue.slice(0, -1);
+    subscreen.innerText = deleteSubs;
 });
 
 function decide() {
