@@ -1,5 +1,5 @@
 function add(a, b) {
-    temp['result'] = (a + b).toFixed(2);
+    temp['result'] = Math.round(((a + b) + Number.EPSILON) * 100) / 100;
     screen.innerText = temp.result;
     subscreen.innerText = `${temp.result}`;
     console.log(temp);
@@ -7,7 +7,7 @@ function add(a, b) {
 }
 
 function subtract(a, b) {
-    temp['result'] = (a - b).toFixed(2);
+    temp['result'] = Math.round(((a - b) + Number.EPSILON) * 100) / 100;
     screen.innerText = temp.result;
     subscreen.innerText = `${temp.result}`;
     console.log(temp);
@@ -15,7 +15,7 @@ function subtract(a, b) {
 }
 
 function multiply(a, b) {
-    temp['result'] = (a * b).toFixed(2);
+    temp['result'] = Math.round(((a * b) + Number.EPSILON) * 100) / 100;
     screen.innerText = temp.result;
     subscreen.innerText = `${temp.result}`;
     console.log(temp);
@@ -23,7 +23,7 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
-    temp['result'] = (a / b).toFixed(2);
+    temp['result'] = Math.round(((a / b) + Number.EPSILON) * 100) / 100;
     screen.innerText = temp.result;
     subscreen.innerText = `${temp.result}`;
     console.log(temp);
@@ -31,6 +31,9 @@ function divide(a, b) {
 }
 
 function operate(a, b, math) {
+    if (b === 0 && math === '/') {
+        return screen.innerText = 'Error';
+    }
     if (math === '+') return add(a, b);
     if (math === '-') return subtract(a, b);
     if (math === 'x') return multiply(a, b);
@@ -56,6 +59,11 @@ const temp = {
 numbs.forEach((numb) => {
     numb.addEventListener('click', (e) => {
         if (screen.innerText.length >= 12) return;
+        if (screen.innerText === 'Error') {
+            screen.innerText = '';
+            subscreen.innerText = '';
+            resetTemp();
+        };
         if (numb.innerText === '.' && screen.innerText.includes('.')) return;
         if (temp.firstNum !== null &&
             temp.firstNum === temp.result &&
