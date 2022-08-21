@@ -53,6 +53,7 @@ const temp = {
 
 numbs.forEach((numb) => {
     numb.addEventListener('click', (e) => {
+        if (numb.innerText === '.' && screen.innerText.includes('.')) return;
         if (temp.firstNum !== null &&
             temp.firstNum === temp.result &&
             temp.secondNum === null) {
