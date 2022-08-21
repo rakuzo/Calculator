@@ -7,3 +7,6 @@ CSS
 JAVASCRIPT
 
 Demo : 
+
+Font use : 
+(DIGITAL-7 version 1.02)[http://www.styleseven.com/]
