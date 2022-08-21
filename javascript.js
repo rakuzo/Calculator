@@ -55,6 +55,7 @@ const temp = {
 
 numbs.forEach((numb) => {
     numb.addEventListener('click', (e) => {
+        if (screen.innerText.length >= 12) return;
         if (numb.innerText === '.' && screen.innerText.includes('.')) return;
         if (temp.firstNum !== null &&
             temp.firstNum === temp.result &&
