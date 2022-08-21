@@ -1,5 +1,5 @@
 function add(a, b) {
-    temp['result'] = a + b;
+    temp['result'] = (a + b).toFixed(2);
     screen.innerText = temp.result;
     subscreen.innerText = `${temp.result}`;
     console.log(temp);
@@ -7,7 +7,7 @@ function add(a, b) {
 }
 
 function subtract(a, b) {
-    temp['result'] = a - b;
+    temp['result'] = (a - b).toFixed(2);
     screen.innerText = temp.result;
     subscreen.innerText = `${temp.result}`;
     console.log(temp);
@@ -15,7 +15,7 @@ function subtract(a, b) {
 }
 
 function multiply(a, b) {
-    temp['result'] = a * b;
+    temp['result'] = (a * b).toFixed(2);
     screen.innerText = temp.result;
     subscreen.innerText = `${temp.result}`;
     console.log(temp);
@@ -23,7 +23,7 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
-    temp['result'] = a / b;
+    temp['result'] = (a / b).toFixed(2);
     screen.innerText = temp.result;
     subscreen.innerText = `${temp.result}`;
     console.log(temp);
