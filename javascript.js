@@ -98,7 +98,7 @@ clear.addEventListener('click', () => {
     resetTemp();
     temp.result = null;
     screen.innerText = '';
-    subscreen.innerHTML = '';
+    subscreen.innerText = '';
 });
 
 backSpace.addEventListener('click', () => {
