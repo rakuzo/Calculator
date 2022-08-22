@@ -142,7 +142,6 @@ window.addEventListener('keydown', getKeyboard);
 
 function getKeyboard(e) {
     if (e.key >= 0 && e.key <= 9) {
-        console.log(e.key);
         initializeScreen();
         if (e.key.innerText === '.' && screen.innerText.includes('.')) return;
         screen.innerText += e.key;
@@ -159,6 +158,9 @@ function getKeyboard(e) {
             } else {
                 subscreen.innerText += e.key;
             }
+    } if (e.key === '=' || e.key === 'Enter') {
+        getNumber();
+        decide();
     } else {
         return
     }
