@@ -1,29 +1,21 @@
 function add(a, b) {
     temp['result'] = Math.round(((a + b) + Number.EPSILON) * 100) / 100;
-    screen.innerText = temp.result;
-    subscreen.innerText = `${temp.result}`;
-    return resetTemp();
+    showResult();
 }
 
 function subtract(a, b) {
     temp['result'] = Math.round(((a - b) + Number.EPSILON) * 100) / 100;
-    screen.innerText = temp.result;
-    subscreen.innerText = `${temp.result}`;
-    return resetTemp();
+    showResult();
 }
 
 function multiply(a, b) {
     temp['result'] = Math.round(((a * b) + Number.EPSILON) * 100) / 100;
-    screen.innerText = temp.result;
-    subscreen.innerText = `${temp.result}`;
-    return resetTemp();
+    showResult();
 }
 
 function divide(a, b) {
     temp['result'] = Math.round(((a / b) + Number.EPSILON) * 100) / 100;
-    screen.innerText = temp.result;
-    subscreen.innerText = `${temp.result}`;
-    return resetTemp();
+    showResult();
 }
 
 function operate(a, b, math) {
@@ -118,6 +110,12 @@ function getNumber() {
     } else {
         temp['firstNum'] = parseFloat(screen.innerText);
     }
+}
+
+function showResult() {
+    screen.innerText = temp.result;
+    subscreen.innerText = `${temp.result}`;
+    return resetTemp();
 }
 
 function backSpaceOne() {
