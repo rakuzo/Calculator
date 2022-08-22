@@ -147,6 +147,18 @@ function getKeyboard(e) {
         if (e.key.innerText === '.' && screen.innerText.includes('.')) return;
         screen.innerText += e.key;
         subscreen.innerText += e.key;
+    } if (e.key === '+' || e.key === '-' ||
+          e.key === 'x' || e.key === '/') {
+            getNumber(); 
+            screen.innerText = '';
+            decide();
+            temp['operator'] = e.key;
+            getNumber(); 
+            if (isNaN(temp.firstNum)) {
+                return
+            } else {
+                subscreen.innerText += e.key;
+            }
     } else {
         return
     }
