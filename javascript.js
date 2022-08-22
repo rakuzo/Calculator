@@ -141,6 +141,13 @@ function resetTemp() {
 window.addEventListener('keydown', getKeyboard);
 
 function getKeyboard(e) {
-    // console.log(e.key)
-    screen.innerText += e.key;
+    if (e.key >= 0 && e.key <= 9) {
+        console.log(e.key);
+        initializeScreen();
+        if (e.key.innerText === '.' && screen.innerText.includes('.')) return;
+        screen.innerText += e.key;
+        subscreen.innerText += e.key;
+    } else {
+        return
+    }
 }
