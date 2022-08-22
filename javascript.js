@@ -164,7 +164,7 @@ function getKeyboard(e) {
             getNumber();
             decide();
     } if (e.key === 'Backspace') {
-
+            backSpaceOne();
     } else {
         return
     }
