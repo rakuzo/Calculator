@@ -33,7 +33,7 @@ function operate(a, b, math) {
     }
     if (math === '+') return add(a, b);
     if (math === '-') return subtract(a, b);
-    if (math === 'x') return multiply(a, b);
+    if (math === 'x' || math === '*') return multiply(a, b);
     if (math === '/') return divide(a, b);
 }
 
@@ -145,13 +145,14 @@ function resetAll() {
 window.addEventListener('keydown', getKeyboard);
 
 function getKeyboard(e) {
-    if (e.key >= 0 && e.key <= 9) {
+    if (e.key >= 0 && e.key <= 9 || e.key === '.') {
         initializeScreen();
-        if (e.key.innerText === '.' && screen.innerText.includes('.')) return;
+        if (e.key === '.' && screen.innerText.includes('.')) return;
         screen.innerText += e.key;
         subscreen.innerText += e.key;
     } if (e.key === '+' || e.key === '-' ||
-          e.key === 'x' || e.key === '/') {
+          e.key === 'x' || e.key === '*' ||
+          e.key === '/') {
             getNumber(); 
             screen.innerText = '';
             decide();
