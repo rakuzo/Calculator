@@ -55,20 +55,8 @@ const temp = {
 
 numbs.forEach((numb) => {
     numb.addEventListener('click', (e) => {
-        if (screen.innerText.length >= 12) return;
-        if (screen.innerText === 'Error') {
-            screen.innerText = '';
-            subscreen.innerText = '';
-            resetTemp();
-        };
+        initializeScreen();
         if (numb.innerText === '.' && screen.innerText.includes('.')) return;
-        if (temp.firstNum !== null &&
-            temp.firstNum === temp.result &&
-            temp.secondNum === null) {
-            screen.innerText = '';
-            //fill first number to break the condition
-            temp['secondNum'] = parseFloat(screen.innerText); 
-        };
         screen.innerText += e.target.innerText;
         subscreen.innerText += e.target.innerText;
     });
@@ -110,6 +98,22 @@ backSpace.addEventListener('click', () => {
     subscreen.innerText = deleteSubs;
 });
 
+function initializeScreen() {
+    if (screen.innerText.length >= 12) return;
+        if (screen.innerText === 'Error') {
+            screen.innerText = '';
+            subscreen.innerText = '';
+            resetTemp();
+        };
+        if (temp.firstNum !== null &&
+            temp.firstNum === temp.result &&
+            temp.secondNum === null) {
+            screen.innerText = '';
+            //fill first number to break the condition
+            temp['secondNum'] = parseFloat(screen.innerText); 
+        };
+}
+
 function decide() {
     if (isNaN(temp.firstNum) || isNaN(temp.secondNum)) return;
     if (temp.firstNum !== null && 
@@ -132,4 +136,11 @@ function resetTemp() {
     temp.firstNum = null;
     temp.secondNum = null;
     temp.operator = null;
+}
+
+window.addEventListener('keydown', getKeyboard);
+
+function getKeyboard(e) {
+    // console.log(e.key)
+    screen.innerText += e.key;
 }
