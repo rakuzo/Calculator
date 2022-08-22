@@ -82,12 +82,7 @@ equal.addEventListener('click', () => {
     decide();
 });
 
-clear.addEventListener('click', () => {
-    resetTemp();
-    temp.result = null;
-    screen.innerText = '';
-    subscreen.innerText = '';
-});
+clear.addEventListener('click', resetAll);
 
 backSpace.addEventListener('click', backSpaceOne);
 
@@ -140,6 +135,13 @@ function resetTemp() {
     temp.operator = null;
 }
 
+function resetAll() {
+    resetTemp();
+    temp.result = null;
+    screen.innerText = '';
+    subscreen.innerText = '';
+}
+
 window.addEventListener('keydown', getKeyboard);
 
 function getKeyboard(e) {
@@ -165,6 +167,8 @@ function getKeyboard(e) {
             decide();
     } if (e.key === 'Backspace') {
             backSpaceOne();
+    } if (e.key === 'Escape') {
+            resetAll();
     } else {
         return
     }
