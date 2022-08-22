@@ -89,14 +89,7 @@ clear.addEventListener('click', () => {
     subscreen.innerText = '';
 });
 
-backSpace.addEventListener('click', () => {
-    displayValue = screen.innerText;
-    const deleteOne = displayValue.slice(0, -1);
-    screen.innerText = deleteOne;
-    historyValue = subscreen.innerText;
-    const deleteSubs = historyValue.slice(0, -1);
-    subscreen.innerText = deleteSubs;
-});
+backSpace.addEventListener('click', backSpaceOne);
 
 function initializeScreen() {
     if (screen.innerText.length >= 12) return;
@@ -132,6 +125,15 @@ function getNumber() {
     }
 }
 
+function backSpaceOne() {
+    displayValue = screen.innerText;
+    const deleteOne = displayValue.slice(0, -1);
+    screen.innerText = deleteOne;
+    historyValue = subscreen.innerText;
+    const deleteSubs = historyValue.slice(0, -1);
+    subscreen.innerText = deleteSubs;
+}
+
 function resetTemp() {
     temp.firstNum = null;
     temp.secondNum = null;
@@ -159,8 +161,10 @@ function getKeyboard(e) {
                 subscreen.innerText += e.key;
             }
     } if (e.key === '=' || e.key === 'Enter') {
-        getNumber();
-        decide();
+            getNumber();
+            decide();
+    } if (e.key === 'Backspace') {
+
     } else {
         return
     }
