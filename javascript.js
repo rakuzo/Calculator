@@ -48,6 +48,7 @@ const temp = {
 numbs.forEach((numb) => {
     numb.addEventListener('click', (e) => {
         initializeScreen();
+        if (screen.innerText.length >= 12) return;
         if (numb.innerText === '.' && screen.innerText.includes('.')) return;
         screen.innerText += e.target.innerText;
         subscreen.innerText += e.target.innerText;
@@ -79,19 +80,18 @@ clear.addEventListener('click', resetAll);
 backSpace.addEventListener('click', backSpaceOne);
 
 function initializeScreen() {
-    if (screen.innerText.length >= 12) return;
-        if (screen.innerText === 'Error') {
-            screen.innerText = '';
-            subscreen.innerText = '';
-            resetTemp();
-        };
-        if (temp.firstNum !== null &&
-            temp.firstNum === temp.result &&
-            temp.secondNum === null) {
-            screen.innerText = '';
-            //fill first number to break the condition
-            temp['secondNum'] = parseFloat(screen.innerText); 
-        };
+    if (screen.innerText === 'Error') {
+        screen.innerText = '';
+        subscreen.innerText = '';
+        resetTemp();
+    };
+    if (temp.firstNum !== null &&
+        temp.firstNum === temp.result &&
+        temp.secondNum === null) {
+        screen.innerText = '';
+        //fill first number to break the condition
+        temp['secondNum'] = parseFloat(screen.innerText); 
+    };
 }
 
 function decide() {
@@ -145,6 +145,7 @@ window.addEventListener('keydown', getKeyboard);
 function getKeyboard(e) {
     if (e.key >= 0 && e.key <= 9 || e.key === '.') {
         initializeScreen();
+        if (screen.innerText.length >= 12) return;
         if (e.key === '.' && screen.innerText.includes('.')) return;
         screen.innerText += e.key;
         subscreen.innerText += e.key;
